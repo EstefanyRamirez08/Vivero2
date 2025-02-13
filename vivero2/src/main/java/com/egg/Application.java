@@ -69,8 +69,16 @@ public class Application {
               System.out.println("Error al eliminar el empleado: " + e.getMessage());
           }
 
+          // Cerrar EntityManager y EntityManagerFactory en un bloque finally
+          finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+            if (emf != null && emf.isOpen()) {
+                emf.close();
+            }
         }
-    }
-
+    } 
+}
 
     
