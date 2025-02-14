@@ -61,7 +61,7 @@ public class Application {
         // llamar al metodo empleado servicio para eliminar un empleado
 
           // Llamar al método para eliminar un empleado
-          int idEmpleadoAEliminar = 2;  // ID del empleado a eliminar (ajústalo según tu BD)
+          int idEmpleadoAEliminar = 2;  
           try {
               empleadoServicio.eliminarEmpleado(idEmpleadoAEliminar);
               System.out.println("Empleado con ID " + idEmpleadoAEliminar + " eliminado con éxito.");

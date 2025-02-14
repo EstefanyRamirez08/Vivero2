@@ -39,10 +39,10 @@ public class GamaProductoServicio {
             System.out.println("Error al buscar gama de producto: " + e.getMessage());
             return null;
         }
-    } // 🔹 Se cerró correctamente el método
+    } 
 
     public void actualizarGamaProducto(int idGama, String nuevaGama, String nuevaDescripcionHtml, String nuevaDescripcionTexto, String nuevaImagen) throws Exception {
-        GamaProducto gamaProducto = daoGamaProducto.buscarGamaProducto(idGama); // 🔹 Se corrigió el nombre de la variable
+        GamaProducto gamaProducto = daoGamaProducto.buscarGamaProducto(idGama); 
 
         if (gamaProducto == null) {
             throw new Exception("No se encontró una gama de producto con el ID: " + idGama);
@@ -53,6 +53,6 @@ public class GamaProductoServicio {
         gamaProducto.setDescripcionTexto(nuevaDescripcionTexto);
         gamaProducto.setImagen(nuevaImagen);
 
-        daoGamaProducto.guardaGamaProducto(gamaProducto); // 🔹 Se corrigió la llamada al método
+        daoGamaProducto.guardaGamaProducto(gamaProducto); 
     }
 }
