@@ -1,2 +1,5 @@
-src/main/resources/META-INF/persistence.xml 
-"src/main/resources/META-INF/persistence.xml" 
+# Ignorar persistence.xml
+vivero2/src/main/resources/META-INF/persistence.xml
+
+# Ignorar la carpeta target
+vivero2/target/
