@@ -1,3 +1,3 @@
-src/main/resources/META-INF/persistence.xml 
-"src/main/resources/META-INF/persistence.xml" 
-target/ 
+src/main/resources/META-INF/persistence.xml
+target/
+vivero2/src/main/resources/META-INF/*
