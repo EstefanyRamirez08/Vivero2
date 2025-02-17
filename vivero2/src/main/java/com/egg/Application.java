@@ -164,7 +164,7 @@ public class Application {
         System.out.println("**********************************************");
         System.out.println("             LISTA DE EMPLEADOS OFICINAS               ");
         System.out.println("**********************************************");
-        System.out.println(" ID Cliente   |  Nombre Empleado | ID Oficina ");
+        System.out.println(" ID Empleado  |  Nombre Empleado | ID Oficina ");
         System.out.println("------------------------------------------------------");
         
         empleadoServicio.listarEmpleadosOficinas();
