@@ -22,7 +22,7 @@ public class Pedido {
     @Column(name = "id_pedido")
     private int idPedido;
 
-    @Column(name = "codigo_pedido", length = 255)
+    @Column(name = "codigo_pedido")
     private int codigoPedido;
 
     @Column(name = "comentarios", length = 255)

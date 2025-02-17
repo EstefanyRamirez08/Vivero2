@@ -1,24 +1,19 @@
-
 package com.egg.persistencia;
 
-import com.egg.entidades.Cliente;
+import com.egg.entidades.Pago;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-public class ClienteDAO {
-
+public class PagoDAO {
+    
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("ViveroPU");
     private final EntityManager em = emf.createEntityManager();
 
-    public void guardaCliente(Cliente cliente) throws Exception {
+    public void guardaPago(Pago pago) throws Exception {
         em.getTransaction().begin();
-        em.persist(cliente);
+        em.persist(pago);
         em.getTransaction().commit();
-    }
-
-    public Cliente obtenerClientePorId(int idCliente) {
-        return em.find(Cliente.class, idCliente);
     }
 }
