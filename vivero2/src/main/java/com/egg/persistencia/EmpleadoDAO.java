@@ -1,5 +1,8 @@
 package com.egg.persistencia;
 
+import java.util.List;
+
+//import com.egg.entidades.Cliente;
 import com.egg.entidades.Empleado;
 
 import jakarta.persistence.EntityManager;
@@ -29,5 +32,14 @@ public class EmpleadoDAO {
         }
         em.getTransaction().commit();
     }
-}
 
+    public List<Empleado> listarTodas() throws Exception {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT e FROM Empleado e", Empleado.class)
+                     .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+}

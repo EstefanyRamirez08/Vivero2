@@ -2,6 +2,7 @@ package com.egg.servicios;
 
 import com.egg.entidades.Cliente;
 import com.egg.persistencia.ClienteDAO;
+import java.util.List;
 
 public class ClienteServicio {
 
@@ -38,13 +39,26 @@ public class ClienteServicio {
 
         } catch (Exception e) {
             System.out.println(e.toString() + "No se guardo el  nuevo cliente de manera correcta");
+
         }
-
-   
-
     }
-}
+        
+        //listar clientes 
 
-
+        public void listarClientes() {
+            try {
+                List<Cliente> todosClientes = daoCliente.listarTodas();
+                imprimirLista(todosClientes);
+            } catch (Exception e) {
+                System.out.println("Error al obtener la lista de clientes: " + e.getMessage());
+            }
+        }
     
-
+        private void imprimirLista(List<Cliente> listaRecibida) {
+            for (Cliente cliente : listaRecibida) {
+                System.out.println(cliente.getNombreCliente() + " - " + 
+                                   cliente.getApellidoContacto() + " - " + 
+                                   cliente.getCiudad());
+            }
+        }
+    }

@@ -65,7 +65,8 @@ public class Application {
 
     private static void probarClienteServicio() {
         System.out.println("Probando ClienteServicio...");
-        clienteServicio.crearCliente("Juan", "Mendoza", 12345678, "CP5000", "11111111", 1, 10000.00, "Juan Perez", "Juan Perez", "Argentina", "Mendoza", "12345678");
+        clienteServicio.crearCliente("Juan", "Mendoza", 12345678, "CP5000", "11111111", 1, 10000.00, "Juan Perez",
+                "Juan Perez", "Argentina", "Mendoza", "12345678");
         System.out.println("Cliente creado con éxito.\n");
     }
 
@@ -77,7 +78,8 @@ public class Application {
         if (gamaProducto != null) {
             System.out.println("Gama de Producto encontrada: " + gamaProducto);
             try {
-                gamaProductoServicio.actualizarGamaProducto(1, "Nueva Gama", "Nueva Descripción HTML", "Nueva Descripción Texto", "Nueva Imagen");
+                gamaProductoServicio.actualizarGamaProducto(1, "Nueva Gama", "Nueva Descripción HTML",
+                        "Nueva Descripción Texto", "Nueva Imagen");
                 System.out.println("Gama de Producto actualizada con éxito.");
             } catch (Exception e) {
                 System.out.println("Error al actualizar la Gama de Producto: " + e.getMessage());
@@ -102,15 +104,15 @@ public class Application {
 
     private static void probarProductoServicio() {
         System.out.println("Probando ProductoServicio...");
-        // Buscar una GamaProducto existente 
-GamaProducto gamaProducto = gamaProductoServicio.buscarGamaProductoPorId(1);
-if (gamaProducto != null) {
-    // Llamar a guardarProducto con los parámetros correctos
-    productoServicio.guardarProducto("Maceta de barro", "Maceta artesanal", 20.50, gamaProducto);
-    System.out.println("Producto guardado con éxito.\n");
-} else {
-    System.out.println("Error: No se encontró la GamaProducto con ID 1.");
-}
+        // Buscar una GamaProducto existente
+        GamaProducto gamaProducto = gamaProductoServicio.buscarGamaProductoPorId(1);
+        if (gamaProducto != null) {
+            // Llamar a guardarProducto con los parámetros correctos
+            productoServicio.guardarProducto("Maceta de barro", "Maceta artesanal", 20.50, gamaProducto);
+            System.out.println("Producto guardado con éxito.\n");
+        } else {
+            System.out.println("Error: No se encontró la GamaProducto con ID 1.");
+        }
     }
 
     private static void probarPedidoServicio() {
@@ -140,5 +142,32 @@ if (gamaProducto != null) {
         if (emf != null && emf.isOpen()) {
             emf.close();
         }
+
+        // Imprimir lista de oficinas
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE OFICINAS               ");
+        System.out.println("**********************************************");
+        System.out.println("ID oficina   |  Ciudad  Oficina   |   Pais oficina");
+        oficinaServicio.listarOficinas();
+
+        // Imprimir lista de Clientes por ciudad 
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE CLIENTES               ");
+        System.out.println("**********************************************");
+        System.out.println(" Nombre Cliente   | Apellido Contacto  | Ciudad Cliente ");
+        System.out.println("------------------------------------------------------");
+
+        // Llamar al servicio para listar los empleados por oficina
+        clienteServicio.listarClientes();
+
+        // Imprimir lista de Empleados por Oficina
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE EMPLEADOS OFICINAS               ");
+        System.out.println("**********************************************");
+        System.out.println(" ID Cliente   |  Nombre Empleado | ID Oficina ");
+        System.out.println("------------------------------------------------------");
+        
+        empleadoServicio.listarEmpleadosOficinas();
+
     }
 }

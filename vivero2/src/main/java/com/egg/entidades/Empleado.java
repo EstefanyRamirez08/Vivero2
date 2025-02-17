@@ -39,9 +39,9 @@ public class Empleado {
     @Column(name = "puesto")
     private String puesto;
 
-    @ManyToOne // "Muchos empleados pueden pertenecer a una misma oficina"
-    @JoinColumn(name = "id_oficina") //// Establezco la relacion con Oficina. Indico con que "dato se relacionan".
-    private Oficina idOficina;
+    @ManyToOne
+    @JoinColumn(name = "id_oficina") // Relación con la columna "id_oficina" en la base de datos
+    private Oficina oficina; // Aquí es donde se mapea la oficina
 
     public Empleado() {
     }
@@ -110,12 +110,13 @@ public class Empleado {
         this.puesto = puesto;
     }
 
-    public Oficina getIdOficina() {
-        return idOficina;
+    // Método para obtener la oficina
+    public Oficina getOficina() { 
+        return oficina; 
     }
 
-    public void setIdOficina(Oficina idOficina) {
-        this.idOficina = idOficina;
+    // Método para asignar la oficina
+    public void setOficina(Oficina oficina) { 
+        this.oficina = oficina; 
     }
-
 }

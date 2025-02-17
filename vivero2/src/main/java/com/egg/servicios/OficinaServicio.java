@@ -2,6 +2,7 @@ package com.egg.servicios;
 
 import com.egg.entidades.Oficina;
 import com.egg.persistencia.OficinaDAO;
+import java.util.List; 
 
 public class OficinaServicio {
     private final OficinaDAO daoOficina;
@@ -27,4 +28,20 @@ public class OficinaServicio {
             System.out.println(e.toString() + " No se guardó la nueva oficina de manera correcta");
         }
     }
-}
+
+    public void listarOficinas() {
+        try {
+            List<Oficina> todasOficinas = daoOficina.listarTodas();
+            imprimirLista(todasOficinas);
+        } catch (Exception e) {
+            // Manejo de la excepción
+            System.out.println("Error al listar oficinas: " + e.getMessage());
+        }
+    }
+    
+        public void imprimirLista(List<Oficina> listaRecibida) throws Exception {
+            for (Oficina unitariaOficina : listaRecibida) {
+                System.out.println(unitariaOficina.getCodigoOficina() + " - " + unitariaOficina.getCiudad() + " - " + unitariaOficina.getPais());
+            }
+        }
+    }

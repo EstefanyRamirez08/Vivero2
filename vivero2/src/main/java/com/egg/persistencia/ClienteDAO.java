@@ -1,6 +1,8 @@
 
 package com.egg.persistencia;
 
+import java.util.List;
+
 import com.egg.entidades.Cliente;
 
 import jakarta.persistence.EntityManager;
@@ -20,5 +22,15 @@ public class ClienteDAO {
 
     public Cliente obtenerClientePorId(int idCliente) {
         return em.find(Cliente.class, idCliente);
+    }
+
+    public List<Cliente> listarTodas() throws Exception {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT c FROM Cliente c", Cliente.class)
+                     .getResultList();
+        } finally {
+            em.close();
+        }
     }
 }
