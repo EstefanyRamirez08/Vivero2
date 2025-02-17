@@ -32,5 +32,15 @@ public class ClienteDAO {
         } finally {
             em.close();
         }
+
+        
+
     }
+    public List<Cliente> listarClientesPorNombre(String nombreABuscar) throws Exception {
+        return em.createQuery("SELECT c FROM Cliente c WHERE c.nombreContacto LIKE :nombre", Cliente.class)
+                .setParameter("nombre", "%" + nombreABuscar + "%")
+                .getResultList();
+    }
+
+    
 }

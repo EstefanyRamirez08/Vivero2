@@ -35,6 +35,12 @@ public class EmpleadoServicio {
                                empleado.getNombre() + " - " + 
                                idOficina); // Aquí se imprime el ID de la oficina
         }
-    
     }
+        public void listarEmpleadosPorOficina(int codigoABuscar) throws Exception {
+            List<Empleado> empleadosOficina = empleadoDAO.listarEmpleadosPorOficina(codigoABuscar);
+            imprimirLista(empleadosOficina);
+        }
+    
+    
+    
 }

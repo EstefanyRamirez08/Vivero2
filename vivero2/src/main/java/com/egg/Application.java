@@ -158,7 +158,7 @@ public class Application {
         System.out.println("------------------------------------------------------");
 
         // Llamar al servicio para listar los empleados por oficina
-        clienteServicio.listarClientes();
+        //clienteServicio.listarClientes();
 
         // Imprimir lista de Empleados por Oficina
         System.out.println("**********************************************");
@@ -168,6 +168,29 @@ public class Application {
         System.out.println("------------------------------------------------------");
         
         empleadoServicio.listarEmpleadosOficinas();
+
+        // Imprimir lista de Empleados por Oficina
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE CLIENTE POR NOMBRE               ");
+        System.out.println("**********************************************");
+        System.out.println(" ID Cliente  |  Apellido Contacto | Nombre Contacto "); 
+        System.out.println("------------------------------------------------------");
+
+        String nombreABuscar = "Link";
+        try { 
+        clienteServicio.listarClientes(nombreABuscar);
+        } catch (Exception e) {
+            System.out.println("Error al listar clientes: " + e.getMessage());
+        }
+
+        // Imprimir lista de Empleados por Oficina
+
+        int codigoABuscar = 3;
+        try { 
+            empleadoServicio.listarEmpleadosPorOficina(codigoABuscar);
+        } catch (Exception e) {
+            System.out.println("Error al listar empleados por oficina: " + e.getMessage());
+        }
 
     }
 }

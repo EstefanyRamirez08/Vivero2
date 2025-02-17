@@ -43,22 +43,45 @@ public class ClienteServicio {
         }
     }
         
-        //listar clientes 
+        // //listar clientes 
 
-        public void listarClientes() {
-            try {
-                List<Cliente> todosClientes = daoCliente.listarTodas();
-                imprimirLista(todosClientes);
-            } catch (Exception e) {
-                System.out.println("Error al obtener la lista de clientes: " + e.getMessage());
-            }
-        }
+        // public void listarClientes() {
+        //     try {
+        //         List<Cliente> todosClientes = daoCliente.listarTodas();
+        //         imprimirLista(todosClientes);
+        //     } catch (Exception e) {
+        //         System.out.println("Error al obtener la lista de clientes: " + e.getMessage());
+        //     }
+        // }
     
-        private void imprimirLista(List<Cliente> listaRecibida) {
-            for (Cliente cliente : listaRecibida) {
-                System.out.println(cliente.getNombreCliente() + " - " + 
-                                   cliente.getApellidoContacto() + " - " + 
-                                   cliente.getCiudad());
+        // private void imprimirLista(List<Cliente> listaRecibida) {
+        //     for (Cliente cliente : listaRecibida) {
+        //         System.out.println(cliente.getNombreCliente() + " - " + 
+        //                            cliente.getApellidoContacto() + " - " + 
+        //                            cliente.getCiudad());
+
+            //}
+            // Listar datos por parametros.
+
+            public void listarClientes(String nombreRecibido) throws Exception {
+                List<Cliente> clientesNombre = daoCliente.listarClientesPorNombre(nombreRecibido);
+                imprimirLista(clientesNombre);
             }
+        
+        
+            // Imprimo solo lgunos datos de la BBDD
+            public void imprimirLista(List<Cliente> listaRecibida) {
+                for (Cliente unitarioCliente : listaRecibida) {
+                    System.out.println(unitarioCliente.getIdCliente() + "-" + unitarioCliente.getApellidoContacto() + "-"
+                            + unitarioCliente.getNombreContacto());
+                }
+        
+        
+            
+        
+            
+        
+            
+
         }
     }

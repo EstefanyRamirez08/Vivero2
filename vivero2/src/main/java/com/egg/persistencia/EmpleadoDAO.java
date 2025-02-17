@@ -2,6 +2,7 @@ package com.egg.persistencia;
 
 import java.util.List;
 
+import com.egg.entidades.Cliente;
 //import com.egg.entidades.Cliente;
 import com.egg.entidades.Empleado;
 
@@ -42,4 +43,13 @@ public class EmpleadoDAO {
             em.close();
         }
     }
-}
+
+    public List<Empleado> listarEmpleadosPorOficina(int codigoABuscar) throws Exception {
+        return em.createQuery("SELECT e FROM Empleado e WHERE e.oficina.codigoOficina = :oficina", Empleado.class)
+                .setParameter("oficina",  + codigoABuscar )
+                .getResultList();
+                
+
+    }
+    }
+
