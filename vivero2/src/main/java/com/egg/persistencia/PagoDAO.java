@@ -13,7 +13,7 @@ public class PagoDAO {
 
     public void guardaPago(Pago pago) throws Exception {
         em.getTransaction().begin();
-        em.persist(pago);
+        em.merge(pago);
         em.getTransaction().commit();
     }
 }

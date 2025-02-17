@@ -18,6 +18,12 @@ public class ProductoDAO {
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println("Error al guardar el producto: " + e.getMessage());
+        } finally {
+            em.close();  // Cerrar EntityManager después de la transacción
         }
+    }
+
+    public void cerrar() {
+        emf.close();  // Cierra el EntityManagerFactory al final del programa
     }
 }
