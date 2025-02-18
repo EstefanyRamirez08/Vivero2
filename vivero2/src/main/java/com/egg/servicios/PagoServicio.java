@@ -1,6 +1,9 @@
 package com.egg.servicios;
 
 import com.egg.entidades.Pago;
+
+import java.util.List;
+
 import com.egg.entidades.Cliente;
 import com.egg.persistencia.PagoDAO;
 import com.egg.persistencia.ClienteDAO;
@@ -38,4 +41,16 @@ public class PagoServicio {
             System.out.println(e.toString() + " No se guardó el pago de manera correcta");
         }
     }
+
+    public void imprimirPagosPorCliente(String nombreContacto) {
+        List<Pago> listaPagos = daoPago.listarPagosPorCliente(nombreContacto);
+        for (Pago pago : listaPagos) {
+            System.out.println(pago.getIdPago() + " | " +
+                               pago.getFechaPago() + " | " +
+                               pago.getFormaPago() + " | " +
+                               pago.getIdTransaccion() + " | " +
+                               pago.getTotal());
+        }
+    }
 }
+

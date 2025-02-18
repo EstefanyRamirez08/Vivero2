@@ -7,6 +7,8 @@ import com.egg.entidades.GamaProducto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.util.Scanner;
+
 
 public class Application {
 
@@ -22,7 +24,7 @@ public class Application {
     private static ProductoServicio productoServicio;
     private static DetallePedidoServicio detallePedidoServicio;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         inicializarServicios();
 
         try {
@@ -135,7 +137,7 @@ public class Application {
         System.out.println("Detalle de pedido guardado con éxito.\n");
     }
 
-    private static void cerrarRecursos() {
+    private static void cerrarRecursos() throws Exception {
         if (em != null && em.isOpen()) {
             em.close();
         }
@@ -150,15 +152,22 @@ public class Application {
         System.out.println("ID oficina   |  Ciudad  Oficina   |   Pais oficina");
         oficinaServicio.listarOficinas();
 
-        // Imprimir lista de Clientes por ciudad 
+        // Imprimir lista de Clientes por ciudad
         System.out.println("**********************************************");
         System.out.println("             LISTA DE CLIENTES               ");
         System.out.println("**********************************************");
         System.out.println(" Nombre Cliente   | Apellido Contacto  | Ciudad Cliente ");
         System.out.println("------------------------------------------------------");
 
+         // Imprimir lista de Productos
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE PRODUCTOS               ");
+        System.out.println("**********************************************");
+        System.out.println("Código    |  Nombre   |   Gama");
+        System.out.println("------------------------------------------------------");
+        productoServicio.listarProductos();
         // Llamar al servicio para listar los empleados por oficina
-        //clienteServicio.listarClientes();
+        // clienteServicio.listarClientes();
 
         // Imprimir lista de Empleados por Oficina
         System.out.println("**********************************************");
@@ -166,31 +175,99 @@ public class Application {
         System.out.println("**********************************************");
         System.out.println(" ID Empleado  |  Nombre Empleado | ID Oficina ");
         System.out.println("------------------------------------------------------");
-        
+
         empleadoServicio.listarEmpleadosOficinas();
 
-        // Imprimir lista de Empleados por Oficina
+        // Imprimir lista de Empleados por NOMBRE
         System.out.println("**********************************************");
-        System.out.println("             LISTA DE CLIENTE POR NOMBRE               ");
+        System.out.println("             LISTA DE EMPLEADOS  POR NOMBRE               ");
         System.out.println("**********************************************");
-        System.out.println(" ID Cliente  |  Apellido Contacto | Nombre Contacto "); 
+        System.out.println(" ID Cliente  |  Apellido Contacto | Nombre Contacto ");
         System.out.println("------------------------------------------------------");
 
         String nombreABuscar = "Link";
-        try { 
-        clienteServicio.listarClientes(nombreABuscar);
+        try {
+            clienteServicio.listarClientes(nombreABuscar);
         } catch (Exception e) {
             System.out.println("Error al listar clientes: " + e.getMessage());
         }
 
         // Imprimir lista de Empleados por Oficina
 
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE EMPLEADOS  POR OFICINA               ");
+        System.out.println("**********************************************");
+        System.out.println(" ID Empleado  |  Apellido  | Nombre | Oficina ");
+        System.out.println("------------------------------------------------------");
+
         int codigoABuscar = 3;
-        try { 
+        try {
             empleadoServicio.listarEmpleadosPorOficina(codigoABuscar);
         } catch (Exception e) {
             System.out.println("Error al listar empleados por oficina: " + e.getMessage());
         }
 
+        //Consultas avanzadas JPQL
+        //Listar el nombre de los empleados junto con la ciudad y el código de su oficina,
+        // excluyendo al empleado cuyo ID se pasa como parámetro.
+        
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE EMPLEADOS CON CIUDAD / OFICINA               ");
+        System.out.println("**********************************************");
+        System.out.println(" NOMBRE  |  CIUDAD  |   ID OFICINA ");
+        System.out.println("------------------------------------------------------");
+        int idEmpleadoExcluido = 3;
+        try {
+            // Llamar al método para imprimir empleados excluyendo uno específico
+            empleadoServicio.imprimirEmpleadosExcluyendo(idEmpleadoExcluido);
+        } catch (Exception e) {
+            System.out.println("Error al listar empleados excluyendo ID " + idEmpleadoExcluido + ": " + e.getMessage());
+        }
+
+        // Llamar al método para imprimir productos excluyendo id Gama
+
+        System.out.println("**********************************************");
+        System.out.println("             LISTA DE PRODUCTOS CON ID PRODUCTO / DESCRIPCION / GAMA               ");
+        System.out.println("**********************************************");
+        System.out.println(" ID  |  DESCRIPCIÓN / HTML |   ID GAMA ");
+        System.out.println("------------------------------------------------------");
+        int idGamaExcluido = 1;
+        try {
+            productoServicio.imprimirProductosExcluyendo(idGamaExcluido);
+        } catch (Exception e) {
+            System.out.println("Error al listar productos excluyendo ID " + idGamaExcluido + ": " + e.getMessage());
+        }
     }
+
+    // // Llamar al método para imprimir pagos del cliente
+        // falta reviar el error que da en el ; de la linea 244 del String nombreContacto = "Anne";
+    //         String nombreContacto = "Anne";
+
+    //     try {
+    //     pagoServicio.imprimirPagosPorCliente(nombreContacto);
+    //     } catch (Exception e) {
+    //     System.out.println("Error al listar pagos del cliente " + nombreContacto + ": " + e.getMessage());
+    //     e.printStackTrace(); // Agregar esto ayuda a ver detalles del error
+    //     }
+    // }
+
 }
+
+
+
+
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+    

@@ -1,13 +1,6 @@
 package com.egg.entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "producto")
@@ -37,17 +30,16 @@ public class Producto {
     private int cantidadEnStock;
 
     @Column(name = "precio_venta")
-    private int precioVenta;
+    private double precioVenta;  
 
     @Column(name = "precio_proveedor")
-    private int precioProveedor;
+    private double precioProveedor; 
 
     @ManyToOne
     @JoinColumn(name = "id_gama")
     private GamaProducto gamaProducto;
 
-    public Producto() {
-    }
+    public Producto() {}
 
     public int getIdProducto() {
         return idProducto;
@@ -105,19 +97,19 @@ public class Producto {
         this.cantidadEnStock = cantidadEnStock;
     }
 
-    public int getPrecioVenta() {
+    public double getPrecioVenta() {  
         return precioVenta;
     }
 
-    public void setPrecioVenta(int precioVenta) {
+    public void setPrecioVenta(double precioVenta) { 
         this.precioVenta = precioVenta;
     }
 
-    public int getPrecioProveedor() {
+    public double getPrecioProveedor() { 
         return precioProveedor;
     }
 
-    public void setPrecioProveedor(int precioProveedor) {
+    public void setPrecioProveedor(double precioProveedor) { 
         this.precioProveedor = precioProveedor;
     }
 
@@ -128,5 +120,4 @@ public class Producto {
     public void setGama(GamaProducto gama) {
         this.gamaProducto = gama;
     }
-
 }

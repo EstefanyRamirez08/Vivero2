@@ -5,7 +5,7 @@ import java.util.List;
 //import com.egg.entidades.Cliente;
 import com.egg.entidades.Empleado;
 //import com.egg.entidades.Empleado;
-import com.egg.persistencia.EmpleadoDAO;    
+import com.egg.persistencia.EmpleadoDAO;
 
 public class EmpleadoServicio {
     private final EmpleadoDAO empleadoDAO;
@@ -13,6 +13,7 @@ public class EmpleadoServicio {
     public EmpleadoServicio() {
         this.empleadoDAO = new EmpleadoDAO();
     }
+
     public void eliminarEmpleado(int idEmpleado) {
         empleadoDAO.eliminarEmpleado(idEmpleado);
     }
@@ -29,18 +30,26 @@ public class EmpleadoServicio {
     private void imprimirLista(List<Empleado> listaRecibida) {
         for (Empleado empleado : listaRecibida) {
             // Acceder al ID de la oficina desde la relación "oficina"
-            String idOficina = empleado.getOficina() != null ? String.valueOf(empleado.getOficina().getIdOficina()) : "Sin oficina";
-    
-            System.out.println(empleado.getIdEmpleado() + " - " + 
-                               empleado.getNombre() + " - " + 
-                               idOficina); // Aquí se imprime el ID de la oficina
+            String idOficina = empleado.getOficina() != null ? String.valueOf(empleado.getOficina().getIdOficina())
+                    : "Sin oficina";
+
+            System.out.println(empleado.getIdEmpleado() + " - " +
+                    empleado.getNombre() + " - " +
+                    idOficina); // Aquí se imprime el ID de la oficina
         }
     }
-        public void listarEmpleadosPorOficina(int codigoABuscar) throws Exception {
-            List<Empleado> empleadosOficina = empleadoDAO.listarEmpleadosPorOficina(codigoABuscar);
-            imprimirLista(empleadosOficina);
+
+    public void listarEmpleadosPorOficina(int codigoABuscar) throws Exception {
+        List<Empleado> empleadosOficina = empleadoDAO.listarEmpleadosPorOficina(codigoABuscar);
+        imprimirLista(empleadosOficina);
+    }
+
+    public void imprimirEmpleadosExcluyendo(int idEmpleado) throws Exception {
+        List<Empleado> listaEmpleados = empleadoDAO.listarEmpleadosExcluyendo(idEmpleado);
+        for (Empleado empleado : listaEmpleados) {
+            System.out.println(empleado.getNombre() + " - " +
+                    empleado.getOficina().getCiudad() + " - " +
+                    empleado.getOficina().getIdOficina());
         }
-    
-    
-    
+    }
 }
